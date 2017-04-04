@@ -1,6 +1,7 @@
 import { expect } from 'chai';
+import { assert } from 'chai';
 import Node from '../scripts/Node';
-import LinkedList from '../scripts/linked-list';
+import CompleteMe from '../scripts/linked-list';
 
 describe('Describe Node', () => {
 
@@ -19,20 +20,53 @@ describe('Describe Node', () => {
   });
 
   it('should have children', () => {
-    var node = new Node('mockumentary','child');
+    var node = new Node('mockumentary');
 
     expect(node.data).to.equal('mockumentary')
-    expect(node.child).to.equal('child')
+    expect(node.nextNode).to.equal(null)
+  });
+
+  it('should have a next property with a default deifition of null or whatever is passed in', () => {
+    var node = new Node();
+    var node2 = new Node('bill', 'murray')
+
+    expect(node.nextNode).to.equal(null)
+    expect(node2.nextNode).to.equal('murray')
   });
 
 });
 
-describe('describe LinkedList', () => {
+
+describe('describe CompleteMe', () => {
 
   it('should be an insance of TrieNode', () => {
-    var trieNode = new LinkedList();
+    var completeMe = new CompleteMe();
 
-    expect(trieNode).to.be.instanceOf(LinkedList);
+    expect(completeMe).to.be.instanceOf(CompleteMe);
+  });
+
+  it('should have the property head that has a value of null', () => {
+    var completeMe = new CompleteMe();
+
+    expect(completeMe.root).to.equal(null)
+  });
+
+  it('should have a property of length set to zero', () => {
+    var completeMe = new CompleteMe();
+
+    expect(completeMe.length).to.equal(0)
+  });
+
+  it('should have an insert() method', () => {
+    var completeMe = new CompleteMe();
+
+    assert.isFunction(completeMe.insert)
+  });
+
+  it.skip('should ', () => {
+    var completeMe = new CompleteMe('bane');
+
+
   });
 
 });

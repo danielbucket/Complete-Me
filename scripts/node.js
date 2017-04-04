@@ -1,9 +1,10 @@
-import LinkedList from './linked-list.js'
+import CompleteMe from './linked-list.js';
 
 export default class Node {
-  constructor(name, child) {
-    this.data = name
-    this.child = child
-
-  }
-}
+  constructor(data, nextNode = null) {
+    // data
+    this.data = data
+    // pointer
+    this.nextNode = {}
+  };
+};
