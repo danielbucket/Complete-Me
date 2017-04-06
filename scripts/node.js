@@ -1,10 +1,11 @@
-import CompleteMe from './linked-list.js';
+import Trie from './trie.js';
 
 export default class Node {
-  constructor(data, nextNode = null) {
-    // data
-    this.data = data
-    // pointer
-    this.nextNode = {}
+
+  constructor(word) {
+    this.word = word;
+    this.children = {};
+    this.isWord = false;
+    this.isAccessed = 0;
   };
 };
