@@ -1,9 +1,11 @@
-import LinkedList from './linked-list.js'
+import Trie from './trie.js';
 
 export default class Node {
-  constructor(name, child) {
-    this.data = name
-    this.child = child
 
-  }
-}
+  constructor(word) {
+    this.word = word;
+    this.children = {};
+    this.isWord = false;
+    this.isAccessed = 0;
+  };
+};
