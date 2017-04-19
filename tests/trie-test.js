@@ -78,16 +78,16 @@ describe('Lemme tell you about Trie', () => {
 
     trie.insert('fishery');
     trie.insert('berrylium');
-    trie.insert('satisfaction')
+    trie.insert('satisfaction');
 
 
-    expect(trie.nodeCount).to.deep.equal(28)
+    expect(trie.nodeCount).to.deep.equal(28);
   });
 
   it('10: should return an array of preffered suggestions', () => {
-    var trie = new Trie()
+    var trie = new Trie();
 
-    trie.insert('panty')
+    trie.insert('pantry');
     trie.insert('poop');
     trie.insert('plow');
     trie.insert('pint');
@@ -106,4 +106,45 @@ describe('Lemme tell you about Trie', () => {
     expect(trie.wordCount).to.deep.equal(235886);
     expect(trie.nodeCount).to.deep.equal(792776);
   });
+
+  it.only('isWord should be true only at the end of a word', () => {
+    var trie = new Trie();
+
+    trie.insert('fresh');
+    trie.insert('freshly');
+
+// searching 'fres'
+    expect(trie.root.children
+                  .f.children
+                  .r.children
+                  .e.children
+                  .s.isWord).to.equal(false)
+
+// searching 'fresh'
+    expect(trie.root.children
+                  .f.children
+                  .r.children
+                  .e.children
+                  .s.children
+                  .h.isWord).to.equal(true);
+
+// searching 'freshl'
+    expect(trie.root.children
+                  .f.children
+                  .r.children
+                  .e.children
+                  .s.children
+                  .h.children
+                  .l.isWord).to.equal(false);
+
+// searching 'freshly'
+    expect(trie.root.children
+                  .f.children
+                  .r.children
+                  .e.children
+                  .s.children
+                  .h.children
+                  .l.children
+                  .y.isWord).to.equal(true);
+  })
 });
