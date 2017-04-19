@@ -1,8 +1,5 @@
 import Node from './node.js';
 
-const text = "/usr/share/dict/words";
-let fs = require('fs');
-let dictionary = fs.readFileSync(text).toString().trim().split('\n')
 
 
 
@@ -15,8 +12,8 @@ export default class Trie {
     this.commonWords = [];
   };
 
-  populate() {
-    dictionary.forEach( word => {
+  populate(input) {
+    input.forEach( word => {
       this.insert(word)
     });
   };

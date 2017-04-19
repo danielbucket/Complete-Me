@@ -1,6 +1,11 @@
 import { expect, assert } from 'chai';
 import Trie from '../scripts/trie';
 import Node from '../scripts/Node';
+
+const fs = require('fs');
+const text = "/usr/share/dict/words";
+const dictionary = fs.readFileSync(text).toString().trim().split('\n')
+
 require('locus');
 
 describe('Lemme tell you about Trie', () => {
@@ -68,15 +73,7 @@ describe('Lemme tell you about Trie', () => {
     assert.isFunction(trie.findWord);
   });
 
-  it.skip('9: should be able to increase the wordCount property', () => {
-    var trie = new Trie();
-
-    trie.insert('bellow')
-
-    expect(trie.insert).to.increase(trie.nodeCount);
-  });
-
-  it('10: should increase the nodeCount accordingly for every letter of every word passed in', () => {
+  it('9: should increase the nodeCount accordingly for every letter of every word passed in', () => {
     var trie = new Trie();
 
     trie.insert('fishery');
@@ -87,7 +84,7 @@ describe('Lemme tell you about Trie', () => {
     expect(trie.nodeCount).to.deep.equal(28)
   });
 
-  it('11: should return an array of preffered suggestions', () => {
+  it('10: should return an array of preffered suggestions', () => {
     var trie = new Trie()
 
     trie.insert('panty')
@@ -101,10 +98,10 @@ describe('Lemme tell you about Trie', () => {
     expect(trie.wordCount).to.equal(4);
   });
 
-  it('12: should be able to engulf an entire dictionary in one gulp', () => {
+  it('11: should be able to engulf an entire dictionary in one gulp', () => {
     var trie = new Trie();
 
-    trie.populate();
+    trie.populate(dictionary);
 
     expect(trie.wordCount).to.deep.equal(235886);
     expect(trie.nodeCount).to.deep.equal(792776);
