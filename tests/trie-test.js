@@ -113,38 +113,42 @@ describe('Lemme tell you about Trie', () => {
     trie.insert('fresh');
     trie.insert('freshly');
 
-// searching 'fres'
+// querying 'fres'
     expect(trie.root.children
-                  .f.children
-                  .r.children
-                  .e.children
-                  .s.isWord).to.equal(false)
+                  .f.children // f
+                  .r.children // r
+                  .e.children // e
+                  .s          // s
+                  .isWord).to.equal(false)
 
-// searching 'fresh'
+// querying 'fresh'
     expect(trie.root.children
-                  .f.children
-                  .r.children
-                  .e.children
-                  .s.children
-                  .h.isWord).to.equal(true);
+                  .f.children // f
+                  .r.children // r
+                  .e.children // e
+                  .s.children // s
+                  .h          // h
+                  .isWord).to.equal(true);
 
-// searching 'freshl'
+// querying 'freshl'
     expect(trie.root.children
-                  .f.children
-                  .r.children
-                  .e.children
-                  .s.children
-                  .h.children
-                  .l.isWord).to.equal(false);
+                  .f.children // f
+                  .r.children // r
+                  .e.children // e
+                  .s.children // s
+                  .h.children // h
+                  .l          // l
+                  .isWord).to.equal(false);
 
-// searching 'freshly'
+// querying 'freshly'
     expect(trie.root.children
-                  .f.children
-                  .r.children
-                  .e.children
-                  .s.children
-                  .h.children
-                  .l.children
-                  .y.isWord).to.equal(true);
+                  .f.children // f
+                  .r.children // r
+                  .e.children // e
+                  .s.children // s
+                  .h.children // h
+                  .l.children // l
+                  .y          // y
+                  .isWord).to.equal(true);
   })
 });
