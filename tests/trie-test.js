@@ -67,10 +67,10 @@ describe('Lemme tell you about Trie', () => {
     assert.isFunction(trie.suggest);
   });
 
-  it('8: should have a findWord function', () => {
+  it('8: should have a searchForWord function', () => {
     var trie = new Trie();
 
-    assert.isFunction(trie.findWord);
+    assert.isFunction(trie.searchForWord);
   });
 
   it('9: should increase the nodeCount accordingly for every letter of every word passed in', () => {
@@ -94,7 +94,7 @@ describe('Lemme tell you about Trie', () => {
     trie.suggest('p');
 
     expect(trie.prelimPossible).to.have.lengthOf(4)
-    expect(trie.newPossible).to.deep.equal(['panty','poop', 'plow', 'pint']);
+    expect(trie.newPossible).to.deep.equal(['pantry','poop', 'plow', 'pint']);
     expect(trie.wordCount).to.equal(4);
   });
 
@@ -107,7 +107,7 @@ describe('Lemme tell you about Trie', () => {
     expect(trie.nodeCount).to.deep.equal(792776);
   });
 
-  it.only('isWord should be true only at the end of a word', () => {
+  it('isWord should be true only at the end of a word', () => {
     var trie = new Trie();
 
     trie.insert('fresh');

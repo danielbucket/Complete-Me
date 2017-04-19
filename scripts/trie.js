@@ -44,10 +44,10 @@ export default class Trie {
       };
 
     };
-    return this.findWord(curNode, userInput);
+    return this.searchForWord(curNode, userInput);
   };
 
-  findWord(curNode, word, array) {
+  searchForWord(curNode, word, array) {
 
     let keys = Object.keys(curNode.children);
 
@@ -58,7 +58,7 @@ export default class Trie {
 
     for (let i = 0; i < keys.length; i++) {
       let node = curNode.children[keys[i]];
-      this.findWord(node, word + keys[i]);
+      this.searchForWord(node, word + keys[i]);
     };
 
   };
