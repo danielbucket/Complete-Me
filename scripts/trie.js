@@ -1,8 +1,5 @@
 import Node from './node.js';
 
-
-
-
 export default class Trie {
   constructor() {
     this.root = new Node();
@@ -55,7 +52,6 @@ export default class Trie {
     let keys = Object.keys(curNode.children);
 
     if (curNode.isWord) {
-      // curNode.isAccessed++;
       this.prelimPossible.push({isAccessed: curNode.isAccessed, word});
       return this.sortedPossible(this.prelimPossible)
     };
