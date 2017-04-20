@@ -1,5 +1,3 @@
-import Trie from './trie.js';
-
 export default class Node {
 
   constructor(word) {
