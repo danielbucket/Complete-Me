@@ -61,10 +61,10 @@ describe('Lemme tell you about Trie', () => {
     expect(trie.wordCount).to.deep.equal(6);
   });
 
-  it('7: should have a suggest function', () => {
+  it('7: should have a findWord function', () => {
     var trie = new Trie();
 
-    assert.isFunction(trie.suggest);
+    assert.isFunction(trie.findWord);
   });
 
   it('8: should have a searchForWord function', () => {
@@ -84,18 +84,43 @@ describe('Lemme tell you about Trie', () => {
     expect(trie.nodeCount).to.deep.equal(28);
   });
 
-  it('10: should return an array of preffered suggestions', () => {
+  it.only('10: should return an array of preffered words', () => {
     var trie = new Trie();
 
-    trie.insert('pantry');
-    trie.insert('poop');
-    trie.insert('plow');
+    trie.insert('pile');
+    trie.insert('pipe');
+    trie.insert('piper');
+    // trie.insert('pine');
     trie.insert('pint');
-    trie.suggest('p');
+    trie.insert('pinney');
 
-    expect(trie.prelimPossible).to.have.lengthOf(4)
-    expect(trie.newPossible).to.deep.equal(['pantry','poop', 'plow', 'pint']);
-    expect(trie.wordCount).to.equal(4);
+
+    trie.findWord('pie')
+    trie.findWord('pie')
+
+    // trie.findWord('pine');
+    // trie.findWord('pine');
+
+    ///
+    // console.log(trie.newPossible);
+
+    trie.findWord('pint');
+    trie.findWord('pint');
+    trie.findWord('pint');
+
+    trie.findWord('pinney');
+    // trie.findWord('pinney');
+    // trie.findWord('pinney');
+    // trie.findWord('pinney');
+
+
+    // console.log('isAccessed :', trie.root);
+
+    expect(trie.wordCount).to.equal(6);
+
+    // console.log(trie.newPossible);
+
+    expect(trie.newPossible).to.deep.equal(['pinney','pint', 'pine', 'pie']);
   });
 
   it('11: should be able to engulf an entire dictionary in one gulp', () => {
@@ -150,5 +175,32 @@ describe('Lemme tell you about Trie', () => {
                   .l.children // l
                   .y          // y
                   .isWord).to.equal(true);
-  })
+  });
+
+  it.skip('should sort the findWorded words based on their isAccessed value', () => {
+    let trie = new Trie();
+
+    trie.insert('flow');
+    trie.insert('flower');
+    trie.insert('flowering');
+    trie.insert('flowerfire');
+    trie.findWord('fl');
+    trie.findWord('flo');
+    trie.findWord('flow');
+    trie.findWord('flow');
+
+    // expect(trie.root.children
+    //               .p.children
+    //               .l.children
+    //               .o.children
+    //               .w.children
+    //               .isAccessed).to.equal()
+
+  // console.log(trie.root.children
+  //               .f.children
+  //               .l.children
+  //               .o.children
+  //               .w)
+                // .isAccessed);
+  });
 });
