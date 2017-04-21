@@ -4,7 +4,7 @@ import Node from '../scripts/node';
 
 const text = "/usr/share/dict/words";
 var fs = require('fs');
-var dictionary = fs.readFileSync(text).toString().trim().split('\n')
+var dictionary = fs.readFileSync(text).toString().trim().split('\n');
 
 
 describe('Lemme tell you about Trie', () => {
@@ -33,7 +33,7 @@ describe('Lemme tell you about Trie', () => {
   it('4: should have a function to pass in large libraries', () => {
     let trie = new Trie();
 
-    assert.isFunction(trie.populate)
+    assert.isFunction(trie.populate);
   });
 
   it('5: should have an insert function', () => {
@@ -77,10 +77,10 @@ describe('Lemme tell you about Trie', () => {
 
     trie.insert('fishery');
     trie.insert('berrylium');
-    trie.insert('satisfaction')
+    trie.insert('satisfaction');
 
 
-    expect(trie.nodeCount).to.deep.equal(28)
+    expect(trie.nodeCount).to.deep.equal(28);
   });
 
   it('10: should return an array of preffered suggestions', () => {
@@ -113,10 +113,10 @@ describe('Lemme tell you about Trie', () => {
     trie.insert('harsh');
 
     expect(trie.root.children
-                  .h.isWord).to.equal(false)
+                  .h.isWord).to.equal(false);
     expect(trie.root.children
                   .h.children
-                  .a.isWord).to.equal(false)
+                  .a.isWord).to.equal(false);
   });
 
   it('13: last node of a word should have an isWord property with a value of true', () => {
@@ -131,71 +131,7 @@ describe('Lemme tell you about Trie', () => {
                   .e.isWord).to.equal(true);
   });
 
-  it('14: if a user passes in a full word, the isAccesed property is by a value of one', () => {
-    var trie = new Trie();
-
-    trie.insert('blast');
-    trie.insert('blue');
-    trie.insert('bloated');
-    trie.insert('blank');
-    trie.insert('bland');
-
-    trie.suggest('blast');
-    trie.suggest('blast');
-    trie.suggest('blast');
-
-    expect(trie.root.children
-                    .b.children
-                    .l.children
-                    .a.children
-                    .s.children
-                    .t.isAccessed).to.equal(3);
-  });
-
-  it('15: if a user passes in a partial word, the isAccesed property should not be increased', () => {
-    var trie = new Trie();
-
-    trie.insert('blast');
-    trie.insert('blue');
-    trie.insert('bloated');
-    trie.insert('blank');
-    trie.insert('bland');
-
-    trie.suggest('bl');
-
-    expect(trie.root.children
-                    .b.children
-                    .l.children
-                    .a.children
-                    .s.children
-                    .t.isAccessed).to.equal(0);
-  });
-
-  it('16: if a user passes in a full word, the isAccesed property should be increased by one each time its been referenced', () => {
-    var trie = new Trie();
-
-    trie.insert('blast');
-
-    trie.suggest('blast');
-
-    expect(trie.root.children
-                    .b.children
-                    .l.children
-                    .a.children
-                    .s.children
-                    .t.isAccessed).to.equal(1);
-
-    trie.suggest('blast');
-
-    expect(trie.root.children
-                    .b.children
-                    .l.children
-                    .a.children
-                    .s.children
-                    .t.isAccessed).to.equal(2);
-  });
-
-  it.only('should present an array of suggested words based on their isAccessed value', () => {
+  it('14: should present an array of suggested words with the most often used word at the front of the list', () => {
     let trie = new Trie();
 
     trie.insert('blast');
@@ -230,14 +166,21 @@ describe('Lemme tell you about Trie', () => {
     );
   });
 
-  it.only('should', () => {
+  it('15: should should increment the isAccessed value when a word is found using the select() function', () => {
     let trie = new Trie();
 
-    trie.insert('paltry');
-    trie.insert('plenty');
     trie.insert('poop');
 
-    trie.suggest('poop');
+    trie.select('poop')
+    expect(trie.root.children.p
+                    .children.o
+                    .children.o
+                    .children.p.isAccessed).to.equal(1)
 
-  })
+    trie.select('poop')
+    expect(trie.root.children.p
+                    .children.o
+                    .children.o
+                    .children.p.isAccessed).to.equal(2)
+  });
 });

@@ -45,16 +45,22 @@ export default class Trie {
       };
     };
 
-    if (curNode.isWord) {
-      this.select(curNode)
-    };
-
     return this.findWord(curNode, userInput);
   };
 
-  select(curNode) {
-    curNode.isAccessed++
-  }
+  select(word) {
+      let wordLetterArray = word.split('');
+      let curNode = this.root;
+
+      wordLetterArray.forEach(letter => {
+        if (curNode.children[letter]) {
+          curNode = curNode.children[letter];
+          return;
+        };
+      });
+
+      curNode.isAccessed++;
+    };
 
   findWord(curNode, word) {
     let keys = Object.keys(curNode.children);
