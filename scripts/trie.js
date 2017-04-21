@@ -46,13 +46,15 @@ export default class Trie {
     };
 
     if (curNode.isWord) {
-      if (JSON.stringify(curNode.children)) {
-      curNode.isAccessed++
-      };
+      this.select(curNode)
     };
 
     return this.findWord(curNode, userInput);
   };
+
+  select(curNode) {
+    curNode.isAccessed++
+  }
 
   findWord(curNode, word) {
     let keys = Object.keys(curNode.children);

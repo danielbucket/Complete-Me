@@ -229,4 +229,15 @@ describe('Lemme tell you about Trie', () => {
       ['blank', 'blast', 'blue', 'bloated']
     );
   });
+
+  it.only('should', () => {
+    let trie = new Trie();
+
+    trie.insert('paltry');
+    trie.insert('plenty');
+    trie.insert('poop');
+
+    trie.suggest('poop');
+
+  })
 });
